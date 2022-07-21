@@ -11,7 +11,7 @@ require("dotenv").config();
 // ejs helps turn javascript into html (rendered in browser)
 app.set("view engine", "ejs");
 
-// store css/style files in public folder
+// store css/style (static) files in public folder
 app.use(express.static("public"));
 app.use(express.urlencoded({extended: true})); // url parser
 
