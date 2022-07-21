@@ -1,0 +1,17 @@
+// schema/template to pass into database
+const mongoose = require("mongoose");
+const todoTaskSchema = new mongoose.Schema({
+    title: {
+        type: String, 
+        required: true // title is needed
+    },
+    content: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    }
+})
+module.exports = mongoose.model("TodoTask", todoTaskSchema, "tasks");
