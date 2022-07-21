@@ -5,7 +5,9 @@ const PORT = 8500;
 const mongoose = require("mongoose");
 require("dotenv").config();
 // keep private files in dotenv
+
 // add model variable
+const TodoTask = require("./models/todotask");
 
 // middleware helps deal with traffic to/from various endpoints/server
 // ejs helps turn javascript into html (rendered in browser)
@@ -20,5 +22,16 @@ mongoose.connect(process.env.DB_CONNECTION,
     () => {console.log(`Connected to db!`)}
 );
 
+app.get("/", async (req, res) => {
+    try {
+        TodoTask.find({}, (err, tasks) => {
+            res.render("index.ejs", {todoTasks: tasks})
+        })
+    } catch (err) {
+        if (err) return res.status(500).send(err)
+    }
+})
+
 // set up server
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+
