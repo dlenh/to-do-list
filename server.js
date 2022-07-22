@@ -22,11 +22,30 @@ mongoose.connect(process.env.DB_CONNECTION,
     () => {console.log(`Connected to db!`)}
 );
 
+// get method
 app.get("/", async (req, res) => {
     try {
         res.render("index.ejs")
     } catch (error) {
         res.status(500).send({message: error.message})
+    }
+})
+
+// post method
+app.post("/", async (req, res) => {
+    const todoTask = new TodoTask(
+        {
+            title: req.body.title,
+            content: req.body.content
+        }
+    )
+    try {
+        await todoTask.save();
+        console.log(todoTask);
+        res.redirect("/");
+    } catch(error) {
+        if (error) return res.status(500).send(error);
+        res.redirect("/");
     }
 })
 
