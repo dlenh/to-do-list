@@ -24,11 +24,9 @@ mongoose.connect(process.env.DB_CONNECTION,
 
 app.get("/", async (req, res) => {
     try {
-        TodoTask.find({}, (err, tasks) => {
-            res.render("index.ejs", {todoTasks: tasks})
-        })
-    } catch (err) {
-        if (err) return res.status(500).send(err)
+        res.render("index.ejs")
+    } catch (error) {
+        res.status(500).send({message: error.message})
     }
 })
 
