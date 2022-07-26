@@ -37,6 +37,9 @@
                     <div class="todo-list-item-content">
                         <%= task.content %>
                     </div>
+                    <a href="/edit/<%=task._id %>" class="edit">
+                        <span class="fas fa-edit"></span>
+                    </a>
                 </li>
                 <% }) %>
             </ul>
