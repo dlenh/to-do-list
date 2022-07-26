@@ -29,13 +29,13 @@
                 <button type="submit"><span class="fas fa-plus">Add Text</span></button>
             </form>
             <ul class="todo-list"> <!-- make list so that it adds elements dynamically -->
-                <% todoTasks.forEach(content => {%>
+                <% todoTasks.forEach(task => {%>
                 <li class="todo-list-item">
                     <div class="todo-list-item-title">
-                        <%= content.title %>
+                        <%= task.title %>
                     </div>
                     <div class="todo-list-item-content">
-                        <%= content.content %>
+                        <%= task.content %>
                     </div>
                 </li>
                 <% }) %>
