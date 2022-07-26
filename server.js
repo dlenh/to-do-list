@@ -25,7 +25,11 @@ mongoose.connect(process.env.DB_CONNECTION,
 // get method
 app.get("/", async (req, res) => {
     try {
-        res.render("index.ejs")
+        TodoTask.find({}, (err,tasks) => {
+            res.render("index.ejs", {
+                todoTasks: tasks
+            })
+        }) // render ejs along with list of tasks from db
     } catch (error) {
         res.status(500).send({message: error.message})
     }
